@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 
 import 'models/income.dart';
@@ -83,4 +86,15 @@ int getAmount(List<Income> incomes, bool isIncome) {
   }
   if (isIncome) return incomeAmount;
   return expenseAmount;
+}
+
+Future<XFile> pickImage() async {
+  try {
+    final image = await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (image == null) return XFile('');
+    return image;
+  } catch (e) {
+    log(e.toString());
+    return XFile('');
+  }
 }

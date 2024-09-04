@@ -5,6 +5,7 @@ String userName = '';
 String userSurname = '';
 String userNickname = '';
 String userBirthday = '';
+String userImage = '';
 
 Future<void> getData() async {
   final prefs = await SharedPreferences.getInstance();
@@ -14,6 +15,7 @@ Future<void> getData() async {
   userSurname = prefs.getString('userSurname') ?? '';
   userNickname = prefs.getString('userNickname') ?? '';
   userBirthday = prefs.getString('userBirthday') ?? '';
+  userImage = prefs.getString('userImage') ?? '';
 }
 
 Future<void> saveData() async {
@@ -36,4 +38,10 @@ Future<void> saveProfile(
   userSurname = surname;
   userNickname = nickName;
   userBirthday = birthday;
+}
+
+Future<void> saveProfileImage(String image) async {
+  final prefs = await SharedPreferences.getInstance();
+  prefs.setString('userImage', image);
+  userImage = image;
 }

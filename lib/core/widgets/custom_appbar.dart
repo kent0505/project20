@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 
 import '../config/app_colors.dart';
+import '../db/prefs.dart';
 import '../utils.dart';
 import 'texts/text_r.dart';
 
@@ -37,10 +40,21 @@ class CustomAppbar extends StatelessWidget {
                 },
                 padding: EdgeInsets.zero,
                 minSize: 50,
-                child: Image.asset(
-                  'assets/profile.png',
-                  height: 50,
-                  width: 50,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(60),
+                  child: Image.file(
+                    File(userImage),
+                    height: 50,
+                    width: 50,
+                    fit: BoxFit.cover,
+                    errorBuilder: (context, error, stackTrace) {
+                      return Image.asset(
+                        'assets/profile.png',
+                        height: 50,
+                        width: 50,
+                      );
+                    },
+                  ),
                 ),
               ),
             const SizedBox(width: 40),

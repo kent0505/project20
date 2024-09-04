@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:project20/core/db/prefs.dart';
 
 import '../../../core/config/app_colors.dart';
@@ -23,17 +26,14 @@ class _ProfilePageState extends State<ProfilePage> {
   final controller3 = TextEditingController();
   final controller4 = TextEditingController();
 
-  bool active = false;
+  ImagePicker picker = ImagePicker();
+  XFile image = XFile('');
 
-  void checkActive() {
-    if (controller4.text.length == 10) {
-      setState(() {
-        active = getButtonActive([
-          controller1,
-          controller2,
-          controller3,
-        ]);
-      });
+  void onPickImage() async {
+    image = await pickImage();
+    if (image.path.isNotEmpty) {
+      await saveProfileImage(image.path);
+      setState(() {});
     }
   }
 
@@ -91,17 +91,34 @@ class _ProfilePageState extends State<ProfilePage> {
                         Positioned(
                           left: 0,
                           right: 0,
-                          child: Image.asset(
-                            'assets/profile.png',
-                            height: 120,
-                            width: 120,
-                          ),
+                          child: userImage.isEmpty
+                              ? Image.asset(
+                                  'assets/profile.png',
+                                  height: 120,
+                                  width: 120,
+                                )
+                              : ClipRRect(
+                                  borderRadius: BorderRadius.circular(60),
+                                  child: Image.file(
+                                    File(userImage),
+                                    height: 120,
+                                    width: 120,
+                                    fit: BoxFit.cover,
+                                    errorBuilder: (context, error, stackTrace) {
+                                      return Image.asset(
+                                        'assets/profile.png',
+                                        height: 120,
+                                        width: 120,
+                                      );
+                                    },
+                                  ),
+                                ),
                         ),
                         Positioned(
                           right: 0,
                           bottom: 0,
                           child: CupertinoButton(
-                            onPressed: () {},
+                            onPressed: onPickImage,
                             padding: EdgeInsets.zero,
                             minSize: 20,
                             child: TextB(
@@ -125,19 +142,19 @@ class _ProfilePageState extends State<ProfilePage> {
                 TxtField(
                   controller: controller1,
                   hintText: 'First name',
-                  onChanged: checkActive,
+                  onChanged: () {},
                 ),
                 const SizedBox(height: 24),
                 TxtField(
                   controller: controller2,
                   hintText: 'Last name',
-                  onChanged: checkActive,
+                  onChanged: () {},
                 ),
                 const SizedBox(height: 24),
                 TxtField(
                   controller: controller3,
                   hintText: 'Nickname',
-                  onChanged: checkActive,
+                  onChanged: () {},
                 ),
                 const SizedBox(height: 24),
                 TxtField(
@@ -145,14 +162,13 @@ class _ProfilePageState extends State<ProfilePage> {
                   hintText: 'Birthday (00.00.0000)',
                   number: true,
                   date: true,
-                  onChanged: checkActive,
+                  onChanged: () {},
                 ),
                 const SizedBox(height: 86),
                 Center(
                   child: PrimaryButton(
                     title: 'Save',
-                    active: active,
-                    white: !active,
+                    white: true,
                     width: 190,
                     onPressed: onSave,
                   ),
@@ -161,7 +177,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 Center(
                   child: PrimaryButton(
                     title: 'Back',
-                    white: !active,
+                    white: true,
                     width: 190,
                     onPressed: onBack,
                   ),

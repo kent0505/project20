@@ -69,12 +69,6 @@ class _AddTransactionPageState extends State<AddTransactionPage> {
   }
 
   @override
-  void initState() {
-    super.initState();
-    controller2.text = getNowString();
-  }
-
-  @override
   void dispose() {
     controller1.dispose();
     controller2.dispose();
@@ -195,6 +189,7 @@ class _AddTransactionPageState extends State<AddTransactionPage> {
                   title: 'Add +',
                   width: 190,
                   active: active,
+                  white: !active,
                   onPressed: onAdd,
                 ),
               ),
