@@ -42,13 +42,13 @@ class DashboardCard extends StatelessWidget {
                         show: false, // Hide shaded area below the line
                       ),
                       spots: [
-                        const FlSpot(0, 1),
-                        const FlSpot(1, 5),
+                        const FlSpot(0, 2),
+                        const FlSpot(1, 2),
                         const FlSpot(2, 2),
-                        const FlSpot(3, 10),
-                        const FlSpot(4, 4),
+                        const FlSpot(3, 12),
+                        const FlSpot(4, 2),
                         const FlSpot(5, 2),
-                        const FlSpot(6, 1),
+                        const FlSpot(6, 2),
                         const FlSpot(7, 5),
                         const FlSpot(8, 2),
                         const FlSpot(9, 10),
@@ -63,7 +63,7 @@ class DashboardCard extends StatelessWidget {
                   gridData: const FlGridData(show: false), // Hide grid lines
                   borderData: FlBorderData(show: false), // Hide border lines
                   minY: 0, // Minimum y-value
-                  maxY: 11, // Maximum y-value with padding added
+                  maxY: 20, // Maximum y-value with padding added
                 ),
               ),
             ),

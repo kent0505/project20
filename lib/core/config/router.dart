@@ -5,6 +5,7 @@ import '../../features/profile/pages/profile_page.dart';
 import '../../features/safe/pages/safe_add_page.dart';
 import '../../features/splash/onboard_page.dart';
 import '../../features/splash/splash_page.dart';
+import '../../features/transaction/pages/history_page.dart';
 
 final routerConfig = GoRouter(
   initialLocation: '/',
@@ -28,6 +29,10 @@ final routerConfig = GoRouter(
     GoRoute(
       path: '/safe-add',
       builder: (context, state) => const SafeAddPage(),
+    ),
+    GoRoute(
+      path: '/history',
+      builder: (context, state) => const HistoryPage(),
     ),
   ],
 );

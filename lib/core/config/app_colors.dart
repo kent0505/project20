@@ -17,3 +17,11 @@ class Fonts {
   static const String medium = 'SFM';
   static const String bold = 'SFB';
 }
+
+Color getCategoryColor(String cat) {
+  if (cat == 'Shopping') return const Color(0xff59E890);
+  if (cat == 'Medicine') return const Color(0xffE85959);
+  if (cat == 'Sport') return const Color(0xff597AE8);
+  if (cat == 'Travel') return const Color(0xffE88B59);
+  return const Color(0xff597AE8);
+}

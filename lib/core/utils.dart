@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 
+import 'db/db.dart';
 import 'models/income.dart';
 
 double navBarHeight = 85;
@@ -86,6 +87,14 @@ int getAmount(List<Income> incomes, bool isIncome) {
   }
   if (isIncome) return incomeAmount;
   return expenseAmount;
+}
+
+int getCategoryAmount(String cat) {
+  int amount = 0;
+  for (Income income in incomesList) {
+    if (income.category == cat && !income.isIncome) amount += income.amount;
+  }
+  return amount;
 }
 
 Future<XFile> pickImage() async {
