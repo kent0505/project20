@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fl_chart/fl_chart.dart';
 
 import '../../../core/config/app_colors.dart';
 import '../../../core/widgets/texts/text_r.dart';
@@ -23,6 +24,51 @@ class DashboardCard extends StatelessWidget {
       ),
       child: Stack(
         children: [
+          // LINE CHART
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 50),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(40),
+              child: LineChart(
+                LineChartData(
+                  lineBarsData: [
+                    LineChartBarData(
+                      isStrokeCapRound: true,
+                      isCurved: true,
+                      color: AppColors.text1,
+                      barWidth: 7,
+                      dotData: const FlDotData(show: false), // Hide dots
+                      belowBarData: BarAreaData(
+                        show: false, // Hide shaded area below the line
+                      ),
+                      spots: [
+                        const FlSpot(0, 1),
+                        const FlSpot(1, 5),
+                        const FlSpot(2, 2),
+                        const FlSpot(3, 10),
+                        const FlSpot(4, 4),
+                        const FlSpot(5, 2),
+                        const FlSpot(6, 1),
+                        const FlSpot(7, 5),
+                        const FlSpot(8, 2),
+                        const FlSpot(9, 10),
+                        const FlSpot(10, 4),
+                        const FlSpot(11, 2),
+                      ],
+                    ),
+                  ],
+                  titlesData: const FlTitlesData(
+                    show: false, // Hide labels on x and y axis
+                  ),
+                  gridData: const FlGridData(show: false), // Hide grid lines
+                  borderData: FlBorderData(show: false), // Hide border lines
+                  minY: 0, // Minimum y-value
+                  maxY: 11, // Maximum y-value with padding added
+                ),
+              ),
+            ),
+          ),
+
           const Positioned(
             top: 28,
             left: 23,

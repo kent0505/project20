@@ -21,7 +21,11 @@ String formatDateTime(DateTime date) {
 }
 
 DateTime convertToDateTime(String date) {
-  return DateFormat('dd.MM.yyyy').parse(date);
+  try {
+    return DateFormat('dd.MM.yyyy').parse(date);
+  } catch (e) {
+    return DateTime.now();
+  }
 }
 
 String getNowString() {

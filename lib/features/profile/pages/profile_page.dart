@@ -60,7 +60,7 @@ class _ProfilePageState extends State<ProfilePage> {
             child: ListView(
               padding: const EdgeInsets.symmetric(horizontal: 26),
               children: [
-                const SizedBox(height: 20),
+                const SizedBox(height: 10),
                 Center(
                   child: SizedBox(
                     height: 130,

@@ -87,7 +87,6 @@ class _AddPageState extends State<AddPage> {
     return Column(
       children: [
         const CustomAppbar('Add transaction'),
-        const SizedBox(height: 10),
         Expanded(
           child: ListView(
             padding: const EdgeInsets.symmetric(horizontal: 26),

@@ -12,7 +12,7 @@ class CustomScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: resize,
+      resizeToAvoidBottomInset: true,
       backgroundColor: AppColors.bg,
       body: Column(
         children: [

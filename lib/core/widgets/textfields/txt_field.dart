@@ -1,9 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 import '../../config/app_colors.dart';
+import '../../utils.dart';
 
 class TxtField extends StatefulWidget {
   const TxtField({
@@ -28,11 +29,12 @@ class TxtField extends StatefulWidget {
 }
 
 class _TxtFieldState extends State<TxtField> {
-  final dateFormatter = MaskTextInputFormatter(
-    mask: '##.##.####',
-    filter: {"#": RegExp(r'[0-9]')},
-    type: MaskAutoCompletionType.lazy,
-  );
+  void onDateTimeChanged(DateTime date) {
+    setState(() {
+      widget.controller.text = formatDateTime(date);
+    });
+    widget.onChanged();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,15 +46,12 @@ class _TxtFieldState extends State<TxtField> {
       ),
       child: TextField(
         controller: widget.controller,
+        readOnly: widget.date ? true : false,
         textAlign: TextAlign.center,
         keyboardType: widget.number ? TextInputType.number : null,
         inputFormatters: [
           LengthLimitingTextInputFormatter(widget.length),
-          // FilteringTextInputFormatter.allow(RegExp("[a-zA-Zа-яА-Я]")),
-          if (widget.date) ...[
-            dateFormatter,
-          ] else if (widget.number)
-            FilteringTextInputFormatter.digitsOnly,
+          if (widget.number) FilteringTextInputFormatter.digitsOnly,
         ],
         textCapitalization: TextCapitalization.sentences,
         style: const TextStyle(
@@ -89,6 +88,42 @@ class _TxtFieldState extends State<TxtField> {
         },
         onChanged: (value) {
           widget.onChanged();
+        },
+        onTap: () async {
+          if (widget.date) {
+            await showCupertinoModalPopup(
+              context: context,
+              builder: (context) {
+                return Container(
+                  height: 240,
+                  decoration: const BoxDecoration(
+                    color: AppColors.main,
+                    borderRadius: BorderRadius.vertical(
+                      top: Radius.circular(40),
+                    ),
+                  ),
+                  child: CupertinoTheme(
+                    data: const CupertinoThemeData(
+                      textTheme: CupertinoTextThemeData(
+                        dateTimePickerTextStyle: TextStyle(
+                          color: AppColors.white,
+                          fontSize: 24,
+                        ),
+                      ),
+                    ),
+                    child: CupertinoDatePicker(
+                      onDateTimeChanged: onDateTimeChanged,
+                      initialDateTime:
+                          convertToDateTime(widget.controller.text),
+                      mode: CupertinoDatePickerMode.date,
+                      minimumYear: 1970,
+                      maximumYear: DateTime.now().year,
+                    ),
+                  ),
+                );
+              },
+            );
+          }
         },
       ),
     );

@@ -17,7 +17,6 @@ class DashboardPage extends StatelessWidget {
     return Column(
       children: [
         const CustomAppbar('Dashboard'),
-        const SizedBox(height: 10),
         BlocBuilder<AddBloc, AddState>(
           builder: (context, state) {
             if (state is IncomeLoadedState) {
