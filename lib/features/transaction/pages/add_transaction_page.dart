@@ -8,18 +8,18 @@ import '../../../core/widgets/custom_appbar.dart';
 import '../../../core/widgets/textfields/txt_field.dart';
 import '../../../core/widgets/texts/text_r.dart';
 import '../../home/bloc/home_bloc.dart';
-import '../bloc/add_bloc.dart';
+import '../bloc/transaction_bloc.dart';
 import '../widgets/category_button.dart';
 import '../widgets/transaction_type_button.dart';
 
-class AddPage extends StatefulWidget {
-  const AddPage({super.key});
+class AddTransactionPage extends StatefulWidget {
+  const AddTransactionPage({super.key});
 
   @override
-  State<AddPage> createState() => _AddPageState();
+  State<AddTransactionPage> createState() => _AddTransactionPageState();
 }
 
-class _AddPageState extends State<AddPage> {
+class _AddTransactionPageState extends State<AddTransactionPage> {
   final controller1 = TextEditingController(); // amount
   final controller2 = TextEditingController(); // date
   final controller3 = TextEditingController(); // category
@@ -54,7 +54,7 @@ class _AddPageState extends State<AddPage> {
   }
 
   void onAdd() {
-    context.read<AddBloc>().add(
+    context.read<TransactionBloc>().add(
           AddIncomeEvent(
             income: Income(
               id: getCurrentTimestamp(),

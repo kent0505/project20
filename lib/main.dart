@@ -6,8 +6,9 @@ import 'core/config/router.dart';
 import 'core/config/themes.dart';
 import 'core/db/db.dart';
 import 'core/utils.dart';
-import 'features/add/bloc/add_bloc.dart';
 import 'features/home/bloc/home_bloc.dart';
+import 'features/safe/bloc/safe_bloc.dart';
+import 'features/transaction/bloc/transaction_bloc.dart';
 
 void main() async {
   await initHive();
@@ -28,7 +29,8 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => HomeBloc()),
-        BlocProvider(create: (context) => AddBloc()),
+        BlocProvider(create: (context) => TransactionBloc()),
+        BlocProvider(create: (context) => SafeBloc()),
       ],
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,

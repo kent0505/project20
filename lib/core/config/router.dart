@@ -2,6 +2,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../features/home/pages/home_page.dart';
 import '../../features/profile/pages/profile_page.dart';
+import '../../features/safe/pages/safe_add_page.dart';
 import '../../features/splash/onboard_page.dart';
 import '../../features/splash/splash_page.dart';
 
@@ -23,6 +24,10 @@ final routerConfig = GoRouter(
     GoRoute(
       path: '/profile',
       builder: (context, state) => const ProfilePage(),
+    ),
+    GoRoute(
+      path: '/safe-add',
+      builder: (context, state) => const SafeAddPage(),
     ),
   ],
 );

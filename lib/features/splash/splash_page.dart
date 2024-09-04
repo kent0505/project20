@@ -5,7 +5,8 @@ import 'package:go_router/go_router.dart';
 import '../../core/config/app_colors.dart';
 import '../../core/db/prefs.dart';
 import '../../core/widgets/others/loading_widget.dart';
-import '../add/bloc/add_bloc.dart';
+import '../safe/bloc/safe_bloc.dart';
+import '../transaction/bloc/transaction_bloc.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -16,7 +17,8 @@ class SplashPage extends StatefulWidget {
 
 class _SplashPageState extends State<SplashPage> {
   void load() async {
-    context.read<AddBloc>().add(GetIncomesEvent());
+    context.read<TransactionBloc>().add(GetIncomesEvent());
+    context.read<SafeBloc>().add(GetSafesEvent());
 
     await getData().then((value) {
       Future.delayed(const Duration(seconds: 2), () {

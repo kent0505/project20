@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
+import 'package:project20/core/db/prefs.dart';
 
 import '../../../core/config/app_colors.dart';
 import '../../../core/utils.dart';
@@ -36,8 +37,28 @@ class _ProfilePageState extends State<ProfilePage> {
     }
   }
 
-  void onSave() {
+  void onSave() async {
+    await saveProfile(
+      controller1.text,
+      controller2.text,
+      controller3.text,
+      controller4.text,
+    ).then((_) {
+      context.pop();
+    });
+  }
+
+  void onBack() {
     context.pop();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    controller1.text = userName;
+    controller2.text = userSurname;
+    controller3.text = userNickname;
+    controller4.text = userBirthday;
   }
 
   @override
@@ -131,8 +152,18 @@ class _ProfilePageState extends State<ProfilePage> {
                   child: PrimaryButton(
                     title: 'Save',
                     active: active,
+                    white: !active,
                     width: 190,
                     onPressed: onSave,
+                  ),
+                ),
+                const SizedBox(height: 16),
+                Center(
+                  child: PrimaryButton(
+                    title: 'Back',
+                    white: !active,
+                    width: 190,
+                    onPressed: onBack,
                   ),
                 ),
                 const SizedBox(height: 16),

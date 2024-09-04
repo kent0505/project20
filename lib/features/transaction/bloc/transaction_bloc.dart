@@ -4,11 +4,11 @@ import '../../../core/db/db.dart';
 import '../../../core/models/income.dart';
 import '../../../core/utils.dart';
 
-part 'add_event.dart';
-part 'add_state.dart';
+part 'transaction_event.dart';
+part 'transaction_state.dart';
 
-class AddBloc extends Bloc<AddEvent, AddState> {
-  AddBloc() : super(AddInitial()) {
+class TransactionBloc extends Bloc<TransactionEvent, TransactionState> {
+  TransactionBloc() : super(TransactionInitial()) {
     on<GetIncomesEvent>((event, emit) async {
       if (incomesList.isEmpty) {
         await getIncomes();

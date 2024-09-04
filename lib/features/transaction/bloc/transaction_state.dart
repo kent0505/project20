@@ -1,10 +1,10 @@
-part of 'add_bloc.dart';
+part of 'transaction_bloc.dart';
 
-abstract class AddState {}
+abstract class TransactionState {}
 
-class AddInitial extends AddState {}
+class TransactionInitial extends TransactionState {}
 
-class IncomeLoadedState extends AddState {
+class IncomeLoadedState extends TransactionState {
   final List<Income> incomes;
   final int incomeAmount;
   final int expenseAmount;

@@ -5,7 +5,7 @@ import '../../../core/utils.dart';
 import '../../../core/widgets/custom_appbar.dart';
 import '../../../core/widgets/others/no_data.dart';
 import '../../../core/widgets/texts/text_r.dart';
-import '../../add/bloc/add_bloc.dart';
+import '../../transaction/bloc/transaction_bloc.dart';
 import '../widgets/dashboard_card.dart';
 import '../widgets/income_card.dart';
 
@@ -17,7 +17,7 @@ class DashboardPage extends StatelessWidget {
     return Column(
       children: [
         const CustomAppbar('Dashboard'),
-        BlocBuilder<AddBloc, AddState>(
+        BlocBuilder<TransactionBloc, TransactionState>(
           builder: (context, state) {
             if (state is IncomeLoadedState) {
               return Expanded(

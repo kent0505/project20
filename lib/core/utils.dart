@@ -54,6 +54,7 @@ void precacheImages(BuildContext context) {
     'assets/profile.png',
     'assets/onboard1.png',
     'assets/onboard2.png',
+    'assets/safe.png',
   ];
   for (String assets in imageAssets) {
     precacheImage(AssetImage(assets), context);

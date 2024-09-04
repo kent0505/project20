@@ -2,13 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:project20/core/utils.dart';
 
 import '../../../core/config/app_colors.dart';
 import '../../../core/models/income.dart';
+import '../../../core/utils.dart';
 import '../../../core/widgets/dialogs/delete_dialog.dart';
 import '../../../core/widgets/texts/text_r.dart';
-import '../../add/bloc/add_bloc.dart';
+import '../../transaction/bloc/transaction_bloc.dart';
 
 class IncomeCard extends StatelessWidget {
   const IncomeCard({super.key, required this.income});
@@ -55,7 +55,7 @@ class IncomeCard extends StatelessWidget {
                     title: 'Delete?',
                     onYes: () {
                       context
-                          .read<AddBloc>()
+                          .read<TransactionBloc>()
                           .add(DeleteIncomeEvent(id: income.id));
                     },
                   );

@@ -8,12 +8,14 @@ class PrimaryButton extends StatelessWidget {
     super.key,
     required this.title,
     this.active = true,
+    this.white = false,
     this.width,
     required this.onPressed,
   });
 
   final String title;
   final bool active;
+  final bool white;
   final double? width;
   final void Function() onPressed;
 
@@ -23,7 +25,7 @@ class PrimaryButton extends StatelessWidget {
       height: 60,
       width: width,
       decoration: BoxDecoration(
-        color: active ? AppColors.main : AppColors.white,
+        color: !white ? AppColors.main : AppColors.white,
         borderRadius: BorderRadius.circular(30),
       ),
       child: CupertinoButton(
@@ -33,7 +35,7 @@ class PrimaryButton extends StatelessWidget {
           child: TextM(
             title,
             fontSize: 20,
-            color: active ? AppColors.white : AppColors.main,
+            color: !white ? AppColors.white : AppColors.main,
           ),
         ),
       ),
