@@ -1,7 +1,4 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 
 import 'db/db.dart';
@@ -75,10 +72,10 @@ String getCategoryAsset(String cat) {
   return 'assets/cat1.svg';
 }
 
-int getAmount(List<Income> incomes, bool isIncome) {
+int getAmount(bool isIncome) {
   int incomeAmount = 0;
   int expenseAmount = 0;
-  for (Income income in incomes) {
+  for (Income income in incomesList) {
     if (income.isIncome) {
       incomeAmount += income.amount;
     } else {
@@ -97,13 +94,35 @@ int getCategoryAmount(String cat) {
   return amount;
 }
 
-Future<XFile> pickImage() async {
-  try {
-    final image = await ImagePicker().pickImage(source: ImageSource.gallery);
-    if (image == null) return XFile('');
-    return image;
-  } catch (e) {
-    log(e.toString());
-    return XFile('');
+int getMonthIncome(int month) {
+  int amount = 0;
+  for (Income income in incomesList) {
+    if (income.isIncome) {
+      DateTime date = convertToDateTime(income.date);
+      if (date.month == month) amount += income.amount;
+    }
   }
+  return amount;
+}
+
+double normalizeIncomes(int month) {
+  List<int> values = [
+    getMonthIncome(1),
+    getMonthIncome(2),
+    getMonthIncome(3),
+    getMonthIncome(4),
+    getMonthIncome(5),
+    getMonthIncome(6),
+    getMonthIncome(7),
+    getMonthIncome(8),
+    getMonthIncome(9),
+    getMonthIncome(10),
+    getMonthIncome(11),
+    getMonthIncome(12),
+  ];
+  int maxValue = values.reduce((a, b) => a > b ? a : b);
+  for (int i = 0; i < values.length; i++) {
+    values[i] = (values[i] * 20 / maxValue).round();
+  }
+  return values[month - 1] + 3.toDouble();
 }

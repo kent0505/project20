@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
+import 'package:project20/core/utils.dart';
 
 import '../../../core/config/app_colors.dart';
 import '../../../core/widgets/texts/text_r.dart';
@@ -42,18 +43,18 @@ class DashboardCard extends StatelessWidget {
                         show: false, // Hide shaded area below the line
                       ),
                       spots: [
-                        const FlSpot(0, 2),
-                        const FlSpot(1, 2),
-                        const FlSpot(2, 2),
-                        const FlSpot(3, 12),
-                        const FlSpot(4, 2),
-                        const FlSpot(5, 2),
-                        const FlSpot(6, 2),
-                        const FlSpot(7, 5),
-                        const FlSpot(8, 2),
-                        const FlSpot(9, 10),
-                        const FlSpot(10, 4),
-                        const FlSpot(11, 2),
+                        FlSpot(0, normalizeIncomes(1)),
+                        FlSpot(1, normalizeIncomes(2)),
+                        FlSpot(2, normalizeIncomes(3)),
+                        FlSpot(3, normalizeIncomes(4)),
+                        FlSpot(4, normalizeIncomes(5)),
+                        FlSpot(5, normalizeIncomes(6)),
+                        FlSpot(6, normalizeIncomes(7)),
+                        FlSpot(7, normalizeIncomes(8)),
+                        FlSpot(8, normalizeIncomes(9)),
+                        FlSpot(9, normalizeIncomes(10)),
+                        FlSpot(10, normalizeIncomes(11)),
+                        FlSpot(11, normalizeIncomes(12)),
                       ],
                     ),
                   ],
@@ -63,7 +64,7 @@ class DashboardCard extends StatelessWidget {
                   gridData: const FlGridData(show: false), // Hide grid lines
                   borderData: FlBorderData(show: false), // Hide border lines
                   minY: 0, // Minimum y-value
-                  maxY: 20, // Maximum y-value with padding added
+                  maxY: 24, // Maximum y-value with padding added
                 ),
               ),
             ),

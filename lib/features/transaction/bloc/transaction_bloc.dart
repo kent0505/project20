@@ -15,14 +15,14 @@ class TransactionBloc extends Bloc<TransactionEvent, TransactionState> {
 
         emit(IncomeLoadedState(
           incomes: incomesList,
-          incomeAmount: getAmount(incomesList, true),
-          expenseAmount: getAmount(incomesList, false),
+          incomeAmount: getAmount(true),
+          expenseAmount: getAmount(false),
         ));
       } else {
         emit(IncomeLoadedState(
           incomes: incomesList,
-          incomeAmount: getAmount(incomesList, true),
-          expenseAmount: getAmount(incomesList, false),
+          incomeAmount: getAmount(true),
+          expenseAmount: getAmount(false),
         ));
       }
     });
@@ -33,8 +33,8 @@ class TransactionBloc extends Bloc<TransactionEvent, TransactionState> {
 
       emit(IncomeLoadedState(
         incomes: incomesList,
-        incomeAmount: getAmount(incomesList, true),
-        expenseAmount: getAmount(incomesList, false),
+        incomeAmount: getAmount(true),
+        expenseAmount: getAmount(false),
       ));
     });
 
@@ -51,8 +51,8 @@ class TransactionBloc extends Bloc<TransactionEvent, TransactionState> {
 
       emit(IncomeLoadedState(
         incomes: incomesList,
-        incomeAmount: getAmount(incomesList, true),
-        expenseAmount: getAmount(incomesList, false),
+        incomeAmount: getAmount(true),
+        expenseAmount: getAmount(false),
       ));
     });
 
@@ -62,8 +62,8 @@ class TransactionBloc extends Bloc<TransactionEvent, TransactionState> {
 
       emit(IncomeLoadedState(
         incomes: incomesList,
-        incomeAmount: getAmount(incomesList, true),
-        expenseAmount: getAmount(incomesList, false),
+        incomeAmount: getAmount(true),
+        expenseAmount: getAmount(false),
       ));
     });
   }

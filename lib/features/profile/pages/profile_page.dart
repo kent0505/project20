@@ -1,12 +1,12 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:project20/core/db/prefs.dart';
 
 import '../../../core/config/app_colors.dart';
-import '../../../core/utils.dart';
+import '../../../core/db/prefs.dart';
 import '../../../core/widgets/buttons/primary_button.dart';
 import '../../../core/widgets/custom_appbar.dart';
 import '../../../core/widgets/custom_scaffold.dart';
@@ -28,6 +28,17 @@ class _ProfilePageState extends State<ProfilePage> {
 
   ImagePicker picker = ImagePicker();
   XFile image = XFile('');
+
+  Future<XFile> pickImage() async {
+    try {
+      final image = await ImagePicker().pickImage(source: ImageSource.gallery);
+      if (image == null) return XFile('');
+      return image;
+    } catch (e) {
+      log(e.toString());
+      return XFile('');
+    }
+  }
 
   void onPickImage() async {
     image = await pickImage();
