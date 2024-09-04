@@ -144,8 +144,8 @@ class _ProfilePageState extends State<ProfilePage> {
                   ),
                 ),
                 const SizedBox(height: 16),
-                const TextM(
-                  'User',
+                TextM(
+                  userName.isEmpty ? 'User' : userName,
                   fontSize: 32,
                   center: true,
                 ),

@@ -106,23 +106,27 @@ int getMonthIncome(int month) {
 }
 
 double normalizeIncomes(int month) {
-  List<int> values = [
-    getMonthIncome(1),
-    getMonthIncome(2),
-    getMonthIncome(3),
-    getMonthIncome(4),
-    getMonthIncome(5),
-    getMonthIncome(6),
-    getMonthIncome(7),
-    getMonthIncome(8),
-    getMonthIncome(9),
-    getMonthIncome(10),
-    getMonthIncome(11),
-    getMonthIncome(12),
-  ];
-  int maxValue = values.reduce((a, b) => a > b ? a : b);
-  for (int i = 0; i < values.length; i++) {
-    values[i] = (values[i] * 20 / maxValue).round();
+  try {
+    List<int> values = [
+      getMonthIncome(1),
+      getMonthIncome(2),
+      getMonthIncome(3),
+      getMonthIncome(4),
+      getMonthIncome(5),
+      getMonthIncome(6),
+      getMonthIncome(7),
+      getMonthIncome(8),
+      getMonthIncome(9),
+      getMonthIncome(10),
+      getMonthIncome(11),
+      getMonthIncome(12),
+    ];
+    int maxValue = values.reduce((a, b) => a > b ? a : b);
+    for (int i = 0; i < values.length; i++) {
+      values[i] = (values[i] * 20 / maxValue).round();
+    }
+    return values[month - 1] + 3.toDouble();
+  } catch (e) {
+    return 3;
   }
-  return values[month - 1] + 3.toDouble();
 }
